@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// api rest....
+// api rest.......
 @RestController
 public class CuentaController {
 
