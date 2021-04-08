@@ -122,8 +122,14 @@ public class CuentaService {
         //orElse retorna el resultado o null si no hay resultado...
         Cuenta cuenta = cuentaRepository.findById(numeroCuenta).orElse(null);
 
+        // valido que la cuenta exista
+        if (cuenta == null) {
+            throw new RuntimeException("la cuenta no existe");
+        }
+
+        // valido que la cuenta este en 0
         if (cuenta.getAmount() != 0) {
-            throw new RuntimeException("la cuenta no tiene saldo 0");
+            throw new RuntimeException("la cuenta no puede ser eliminada");
         }
 
         cuentaRepository.deleteById(numeroCuenta);
