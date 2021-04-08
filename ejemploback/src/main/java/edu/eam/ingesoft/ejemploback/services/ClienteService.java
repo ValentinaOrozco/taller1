@@ -1,6 +1,5 @@
 package edu.eam.ingesoft.ejemploback.services;
 
-import ch.qos.logback.core.net.server.Client;
 import edu.eam.ingesoft.ejemploback.model.Cliente;
 import edu.eam.ingesoft.ejemploback.model.Cuenta;
 import edu.eam.ingesoft.ejemploback.repositories.ClienteRepository;
@@ -41,7 +40,7 @@ public class ClienteService {
     }
 
     public Cliente editarCliente(Cliente cliente) {
-        Cliente clieteBD = clienteRepository.getOne(cliente.getCedula());
+        Cliente clieteBD = clienteRepository.findById(cliente.getCedula()).orElse(null);
 
         if (clieteBD == null) {
             throw new RuntimeException("No existe el cliente");
@@ -53,7 +52,7 @@ public class ClienteService {
     }
 
     public void borrarCliente(String cedula) {
-        Cliente clieteBD = clienteRepository.getOne(cedula);
+        Cliente clieteBD = clienteRepository.findById(cedula).orElse(null);
 
         if (clieteBD == null) {
             throw new RuntimeException("No existe el cliente");
